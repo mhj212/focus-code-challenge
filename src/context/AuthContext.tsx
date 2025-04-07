@@ -27,16 +27,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [user, setUser] = useState<string | null>(null);
 
-    useEffect(() => {
-        axios.get('http://localhost:4001/session').then(response => {
-            if (response.data.loggedIn) {
-                setIsAuthenticated(true);
-            } else {
-                setIsAuthenticated(false);
-            }
-        });
-    }, []);
-
     const logIn = async (username: string, password: string) => {
         try {
             await axios.post('http://localhost:4001/login', { username, password });
